@@ -4,9 +4,13 @@
   box-sizing: border-box;
 }
 
+.container-wp{
+  display: inline;
+}
+
 .container-ms-utenti {
   height: 100vh;
-  max-width: 35%;
+  max-width: 30%;
 }
 
 .utente{
@@ -34,7 +38,7 @@
 
 .icons-options {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   color: grey;
 }
 
@@ -98,7 +102,7 @@ nav input:focus-visible {
 /* profilo utenti */
 
 .utenti {
-  height: calc(100% - 169px);
+  height: calc(100% - 171px);
   /* border: 3px solid black; */
   overflow-y: auto;
 }
@@ -119,6 +123,14 @@ nav input:focus-visible {
 .notifications-utenti{
   font-size: 15px;
   color: grey;
+}
+
+
+/* messaggi del utente */
+.container-ms-utente{
+  height: 100vh;
+  max-width: 70%;
+  border: 1px solid red;
 }
 
 

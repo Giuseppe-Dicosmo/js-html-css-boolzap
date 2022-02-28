@@ -12,7 +12,7 @@
 .container-ms-utenti {
   height: 100vh;
   flex-grow: 1;
-  /* max-width: 30%; */
+  max-width: 350px;
 }
 
 .utente, .profile-utente{
@@ -31,11 +31,19 @@
   flex-grow: 1;
 }
 
-.img-profile {
+.container-img-profile {
   width: 40px;
   aspect-ratio: 1 / 1;
   margin-right: 10px;
   border-radius: 50%;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
 }
 
 .icons-options, .notifications-icons-utenti {
@@ -132,6 +140,7 @@ nav input:focus-visible {
 .container-ms-utente{
   height: 100vh;
   flex-grow: 10;
+  display: none;
 }
 
 .profile-utente {
@@ -150,6 +159,7 @@ nav input:focus-visible {
   width: 95%;
   height: 100%;
   margin: 0 auto;
+  border: 2px solid red;
 }
 
 .invia-messaggi-utente {
@@ -176,17 +186,18 @@ nav input:focus-visible {
   padding: 10px;
   /* border: 1px solid rebeccapurple; */
   border-radius: 5px;
+  display: flex;
 }
 
 .container-messaggio-utente{
-  display: flex;
+  flex-direction: column;
   justify-content: flex-end;
+  display: none;
 }
 
 .messaggio-utente {
   background-color: #c7ffba;
-  display: flex;
-  justify-content: flex-end;
+  align-self: flex-end;
 }
 
 .content-utente, .content-myUtente{
@@ -204,6 +215,24 @@ nav input:focus-visible {
   display: flex;
   justify-content: flex-end;
 }
+
+/* ---------------------------- */
+
+/* .container-messaggio-utente.display-active {
+  display: block;
+} */
+
+
+.display-active {
+  display: flex;
+  flex-direction: column;
+}
+
+.display-none {
+  display: none;
+}
+
+
 
 
 

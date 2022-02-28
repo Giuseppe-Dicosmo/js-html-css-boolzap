@@ -11,6 +11,9 @@
 
   <!-- icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 <body>
 
@@ -20,7 +23,9 @@
       <div class="utente">
 
         <div class="img-utente">
-          <img class="img-profile" src="img/DSC0683.jpg" alt="">
+          <div class="container-img-profile">
+            <img src="img/DSC0683.jpg" alt="">
+          </div>
           <p>Elena</p>
         </div>
 
@@ -51,46 +56,38 @@
       </div>
 
       <div class="utenti">
-        <ul>
-          <li class="profile-utenti">
-            <div>
-              <img class="img-profile" src="img/DSC0683.jpg" alt="">
+        <!-- ciclo profili -->
+        <ul v-for="(profili, index) in contacts">
+          <li @click="clickChat(index)"
+          v-for="(messaggi, index) in profili.messages"
+          class="profile-utenti">
+            <div class="container-img-profile">
+              <img :src="profili.avatar" alt="">
             </div>
 
             <div class="notifications-profile">
-              <p>Michele</p>
-              <p class="notifications-utenti">Tutto </p>
+              <p>{{ profili.name }}</p>
+              <p class="notifications-utenti">Tutto</p>
             </div>
 
-            <div class="data-ore-utenti notifications-utenti" >
-              28/02/2022 12:07
+            <div  class="data-ore-utenti notifications-utenti" >
+              {{ messaggi.date }}
             </div>
           </li>
 
-          <li class="profile-utenti">
-            <div>
-              <img class="img-profile" src="img/DSC0683.jpg" alt="">
-            </div>
-
-            <div class="notifications-profile">
-              <p>Michele</p>
-              <p class="notifications-utenti">Tutto </p>
-            </div>
-
-            <div class="data-ore-utenti notifications-utenti" >
-              28/02/2022 12:07
-            </div>
-          </li>
         </ul>
       </div>
     </div>
 
-    <div class="container-ms-utente">
+    <div v-bind:class="(index === chat) ? 'display-active' : 'display-none'"
+    class="container-ms-utente" v-for="(profili, index) in contacts">
       <div class="profile-utente">
-        <img class="img-profile" src="img/DSC0683.jpg" alt="">
+        <div class="container-img-profile">
+          <img :src="profili.avatar" alt="">
+        </div>
 
         <div class="info-utente">
-          <p>Michele</p>
+          <p>{{ profili.name }}</p>
           <p class="notifications-utenti">Ultimo accesso 28/02/2022 12:07</p>
         </div>
 
@@ -102,32 +99,23 @@
       </div>
 
       <div class="messaggi-utente">
-        <div class="container-content-utente">
 
-          <div class="container-messaggio-utente">
-            <div class="messaggio-utente sms">
+        <div v-for="(profili, index) in contacts"
+        v-bind:class="(index === chat) ? 'display-active' : 'display-none'"
+        class="container-messaggio-utente">
 
-              <div class="content-utente ">
-                Ricordati di fare la spesa
-              </div>
+          <div v-for="(messaggi, index) in profili.messages"
+          :class="messaggi.status == 'sent' ? 'messaggio-utente' : 'messaggio-myUtente' "
+          class="sms">
 
-              <div class="data-messaggio-utente">28/02/2022 12:07</div>
+            <div class="content-utente ">
+              {{ messaggi.text }}
             </div>
+
+            <div class="data-messaggio-utente">{{ messaggi.date }}</div>
           </div>
-
-          <div class="container-messaggio-myUtente">
-            <div class="messaggio-myUtente sms">
-
-              <div class="content-myUtente ">
-                Fatto
-              </div>
-
-              <div class="data-messaggio-myUtente">28/02/2022 12:07</div>
-
-            </div>
-          </div>
-
         </div>
+
       </div>
 
       <div class="invia-messaggi-utente">

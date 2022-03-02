@@ -13,6 +13,7 @@
   height: 100vh;
   flex-grow: 1;
   max-width: 350px;
+  border-right: 1px solid grey;
 }
 
 .utente, .profile-utente{
@@ -32,7 +33,7 @@
 }
 
 .container-img-profile {
-  width: 40px;
+  max-width: 50px;
   aspect-ratio: 1 / 1;
   margin-right: 10px;
   border-radius: 50%;
@@ -105,14 +106,14 @@ nav input {
   padding: 0 10px;
 }
 
-nav input:focus-visible {
+nav input:focus-visible, .invia-messaggi:focus-visible {
   outline: none;
 }
 
 /* profilo utenti */
 
 .utenti {
-  height: calc(100% - 171px);
+  height: calc(100% - 221px);
   /* border: 3px solid black; */
   overflow-y: auto;
 }
@@ -120,21 +121,35 @@ nav input:focus-visible {
 .profile-utenti{
   padding: 5px 10px;
   display: flex;
+
+  /* border-bottom:  1px solid gray; */
 }
 
-.profile-utenti:hover{
+.profile-utenti:hover, .profile-utenti.active-background{
   background-color: #eaebeb;
+}
+
+.notifications-profile{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .notifications-profile, .info-utente {
   flex-grow: 1;
 }
 
-.notifications-utenti{
-  font-size: 15px;
+.color-grey{
   color: grey;
 }
 
+.notifications-utenti{
+  overflow: hidden;
+  /* border: 1px solid red; */
+  max-width: 220px;
+  max-height: 20px;
+  font-size: 15px;
+}
 
 /* messaggi del utente */
 .container-ms-utente{
@@ -153,13 +168,16 @@ nav input:focus-visible {
   height: 80%;
   background-color: #e6ddd4;
   overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container-content-utente {
   width: 95%;
-  height: 100%;
+  height: 95%;
   margin: 0 auto;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .invia-messaggi-utente {
@@ -174,30 +192,30 @@ nav input:focus-visible {
   padding: 20px;
 }
 
-.invia-messaggi-utente input {
+.invia-messaggi {
   padding: 10px;
   flex-grow: 1;
   height: 100%;
+  border-radius: 10px;
+  border: 1px solid transparent;
 }
-
 .sms {
-  width: 40%;
-  margin: 10px;
+  max-width: 70%;
+  margin: 1px;
   padding: 10px;
-  /* border: 1px solid rebeccapurple; */
   border-radius: 5px;
   display: flex;
 }
 
-.container-messaggio-utente{
-  flex-direction: column;
-  justify-content: flex-end;
-  display: none;
+.messaggio-myUtente + .messaggio-utente,
+.messaggio-utente + .messaggio-myUtente {
+  margin-top: 20px;
 }
 
 .messaggio-utente {
   background-color: #c7ffba;
   align-self: flex-end;
+  gap: 20px;
 }
 
 .content-utente, .content-myUtente{
@@ -212,16 +230,11 @@ nav input:focus-visible {
 
 .messaggio-myUtente {
   background-color: white;
-  display: flex;
-  justify-content: flex-end;
+  align-self: flex-start;
+  gap: 20px;
 }
 
 /* ---------------------------- */
-
-/* .container-messaggio-utente.display-active {
-  display: block;
-} */
-
 
 .display-active {
   display: flex;
@@ -231,10 +244,3 @@ nav input:focus-visible {
 .display-none {
   display: none;
 }
-
-
-
-
-
-
-

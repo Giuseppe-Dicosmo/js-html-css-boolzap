@@ -58,20 +58,20 @@
       <div class="utenti">
         <!-- ciclo profili -->
         <ul v-for="(profili, index) in contacts">
-          <li @click="clickChat(index)"
-          v-for="(messaggi, index) in profili.messages"
+          <li @click="chat = index"
+          v-bind:class="(index === chat) ? 'active-background' : '' "
           class="profile-utenti">
             <div class="container-img-profile">
               <img :src="profili.avatar" alt="">
             </div>
 
             <div class="notifications-profile">
-              <p>{{ profili.name }}</p>
-              <p class="notifications-utenti">Tutto</p>
+              <p class="name">{{ profili.name }}</p>
+              <p class="notifications-utenti color-grey">{{ profili.messages[profili.messages.length - 1].text }}</p>
             </div>
 
-            <div  class="data-ore-utenti notifications-utenti" >
-              {{ messaggi.date }}
+            <div class="data-ore-utenti color-grey" >
+              20:10
             </div>
           </li>
 
@@ -79,8 +79,9 @@
       </div>
     </div>
 
-    <div v-bind:class="(index === chat) ? 'display-active' : 'display-none'"
-    class="container-ms-utente" v-for="(profili, index) in contacts">
+    <div v-for="(profili, index) in contacts"
+    v-bind:class="(index === chat) ? 'display-active' : 'display-none' "
+    class="container-ms-utente" >
       <div class="profile-utente">
         <div class="container-img-profile">
           <img :src="profili.avatar" alt="">
@@ -88,7 +89,7 @@
 
         <div class="info-utente">
           <p>{{ profili.name }}</p>
-          <p class="notifications-utenti">Ultimo accesso 28/02/2022 12:07</p>
+          <p class="color-grey">Ultimo accesso 28/02/2022 12:07</p>
         </div>
 
         <div class="notifications-icons-utenti">
@@ -100,20 +101,23 @@
 
       <div class="messaggi-utente">
 
-        <div v-for="(profili, index) in contacts"
-        v-bind:class="(index === chat) ? 'display-active' : 'display-none'"
-        class="container-messaggio-utente">
+        <div class="container-content-utente">
 
-          <div v-for="(messaggi, index) in profili.messages"
-          :class="messaggi.status == 'sent' ? 'messaggio-utente' : 'messaggio-myUtente' "
-          class="sms">
+          <div v-for="(profili, index) in contacts"
+          v-bind:class="(index === chat) ? 'display-active' : 'display-none'">
 
-            <div class="content-utente ">
-              {{ messaggi.text }}
+            <div v-for="messaggi in profili.messages"
+            :class="messaggi.status == 'sent' ? 'messaggio-utente' : 'messaggio-myUtente' "
+            class="sms">
+
+              <div class="content-utente ">
+                {{ messaggi.text }}
+              </div>
+
+              <div class="data-messaggio-utente">{{ ora( messaggi.date ) }}</div>
             </div>
-
-            <div class="data-messaggio-utente">{{ messaggi.date }}</div>
           </div>
+
         </div>
 
       </div>
@@ -121,7 +125,13 @@
       <div class="invia-messaggi-utente">
 
         <i class="fa-solid fa-face-smile"></i>
-        <input type="text" placeholder="Scrivi un messaggio">
+
+        <input class="invia-messaggi"
+        type="text"
+        placeholder="Scrivi un messaggio"
+        @keyup.enter="pushMessaggio(), pushMyMessaggio()"
+        v-model="newMessaggio">
+
         <i class="fa-solid fa-microphone"></i>
 
       </div>

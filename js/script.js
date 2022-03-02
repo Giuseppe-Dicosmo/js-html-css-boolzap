@@ -1,8 +1,8 @@
 const app = new Vue({
   el: '#container',
   data: {
-    // active: 'display-active',
     chat: '',
+    newMessaggio: '',
     contacts: [
       {
         name: 'Michele',
@@ -90,8 +90,40 @@ const app = new Vue({
     ]
   },
   methods: {
-    clickChat: function (index) {
-      this.chat = index
+
+    pushMessaggio: function () {
+
+      if (this.newMessaggio.length > 0) {
+        const groupMessages = {
+          date: '10/01/2020 15:50:00',
+          text: this.newMessaggio,
+          status: 'sent'
+        }
+        this.contacts[this.chat].messages.push(groupMessages)
+        this.newMessaggio = '';
+      }
+    },
+
+    pushMyMessaggio: function () {
+      setTimeout(() => {
+
+        const groupMessages = {
+          date: '10/01/2020 15:50:00',
+          text: 'ok',
+          status: 'received'
+        }
+        this.contacts[this.chat].messages.push(groupMessages)
+        this.newMessaggio = '';
+
+      }, 2000);
+
+    },
+
+    ora: function (date) {
+      const ore = date.split(' ')[1];
+      console.log("🚀 ore", ore)
+      return ore.substring(0,5);
     }
-  }
+  },
+
 })

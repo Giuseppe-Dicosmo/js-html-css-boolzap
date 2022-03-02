@@ -221,6 +221,8 @@ nav input:focus-visible, .invia-messaggi:focus-visible {
 .content-utente, .content-myUtente{
   flex-grow: 1;
   align-self: flex-start;
+  max-width: 90%;
+  overflow-wrap: break-word;
 }
 
 .data-messaggio-utente, .data-messaggio-myUtente {

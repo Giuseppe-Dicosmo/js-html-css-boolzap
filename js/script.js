@@ -94,25 +94,28 @@ const app = new Vue({
     pushMessaggio: function () {
 
       if (this.newMessaggio.length > 0) {
+        const index = this.chat
+        console.log("🚀 ~  indexx", index)
         const groupMessages = {
-          date: '10/01/2020 15:50:00',
+          date: `${new Date().getDate()}\/${new Date().getMonth() + 1}\/${new Date().getFullYear()} ${new Date().getHours()}\:${new Date().getMinutes()}\:${new Date().getSeconds()}`,
           text: this.newMessaggio,
           status: 'sent'
         }
-        this.contacts[this.chat].messages.push(groupMessages)
+        this.contacts[index].messages.push(groupMessages)
         this.newMessaggio = '';
       }
     },
 
     pushMyMessaggio: function () {
+      const index = this.chat;
+      console.log("🚀 ~  setTimeout", index)
       setTimeout(() => {
-
         const groupMessages = {
-          date: '10/01/2020 15:50:00',
+          date: `${new Date().getDate()}\/${new Date().getMonth() + 1}\/${new Date().getFullYear()} ${new Date().getHours()}\:${new Date().getMinutes()}\:${new Date().getSeconds()}`,
           text: 'ok',
           status: 'received'
         }
-        this.contacts[this.chat].messages.push(groupMessages)
+        this.contacts[index].messages.push(groupMessages)
         this.newMessaggio = '';
 
       }, 2000);
@@ -121,7 +124,6 @@ const app = new Vue({
 
     ora: function (date) {
       const ore = date.split(' ')[1];
-      console.log("🚀 ore", ore)
       return ore.substring(0,5);
     }
   },

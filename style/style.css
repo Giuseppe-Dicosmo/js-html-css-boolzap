@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.container-wp{
+.container-wp {
   display: flex;
   flex-direction: row;
 }
@@ -16,7 +16,8 @@
   border-right: 1px solid grey;
 }
 
-.utente, .profile-utente{
+.utente,
+.profile-utente {
   padding: 10px;
   width: 100%;
   height: 10%;
@@ -25,7 +26,7 @@
   background-color: #eaeaea;
 }
 
-.img-utente{
+.img-utente {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -47,7 +48,8 @@ img {
   object-position: center;
 }
 
-.icons-options, .notifications-icons-utenti {
+.icons-options,
+.notifications-icons-utenti {
   display: flex;
   gap: 20px;
   color: grey;
@@ -55,7 +57,7 @@ img {
 }
 
 /* Notifiche */
-.notifications{
+.notifications {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -63,7 +65,7 @@ img {
   height: 13%;
 }
 
-.notifications-icons{
+.notifications-icons {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +78,7 @@ img {
   background-color: white;
 }
 
-.notifications-icons i{
+.notifications-icons i {
   color: #77dbff;
 }
 
@@ -85,7 +87,7 @@ img {
 }
 
 /* Navigazione e filtro */
-.navigation-filter{
+.navigation-filter {
   padding: 10px;
   height: 5%;
 }
@@ -94,7 +96,7 @@ nav {
   display: flex;
 }
 
-nav i{
+nav i {
   text-align: center;
   font-size: 100%;
   width: 5%;
@@ -107,7 +109,8 @@ nav input {
   padding: 0 10px;
 }
 
-nav input:focus-visible, .invia-messaggi:focus-visible {
+nav input:focus-visible,
+.invia-messaggi:focus-visible {
   outline: none;
 }
 
@@ -119,32 +122,34 @@ nav input:focus-visible, .invia-messaggi:focus-visible {
   overflow-y: auto;
 }
 
-.profile-utenti{
+.profile-utenti {
   padding: 5px 10px;
   display: flex;
 
   /* border-bottom:  1px solid gray; */
 }
 
-.profile-utenti:hover, .profile-utenti.active-background{
+.profile-utenti:hover,
+.profile-utenti.active-background {
   background-color: #eaebeb;
 }
 
-.notifications-profile{
+.notifications-profile {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.notifications-profile, .info-utente {
+.notifications-profile,
+.info-utente {
   flex-grow: 1;
 }
 
-.color-grey{
+.color-grey {
   color: grey;
 }
 
-.notifications-utenti{
+.notifications-utenti {
   overflow: hidden;
   /* border: 1px solid red; */
   max-width: 220px;
@@ -153,7 +158,7 @@ nav input:focus-visible, .invia-messaggi:focus-visible {
 }
 
 /* messaggi del utente */
-.container-ms-utente{
+.container-ms-utente {
   height: 100vh;
   flex-grow: 10;
   display: none;
@@ -181,7 +186,7 @@ nav input:focus-visible, .invia-messaggi:focus-visible {
   /* border: 2px solid red; */
 }
 
-.dropdown{
+.dropdown {
   position: absolute;
   right: 0;
   top: 30px;
@@ -235,14 +240,16 @@ nav input:focus-visible, .invia-messaggi:focus-visible {
   gap: 20px;
 }
 
-.content-utente, .content-myUtente{
+.content-utente,
+.content-myUtente {
   flex-grow: 1;
   align-self: flex-start;
   max-width: 90%;
   overflow-wrap: break-word;
 }
 
-.data-messaggio-utente, .data-messaggio-myUtente {
+.data-messaggio-utente,
+.data-messaggio-myUtente {
   font-size: 10px;
   align-self: flex-end;
 }

@@ -1,149 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-  <!-- pagina CSS -->
-  <link rel="stylesheet" href="style/style.css">
+    <!-- pagina CSS -->
+    <link rel="stylesheet" href="style/style.css" />
 
-  <!-- icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- Vue -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-</head>
-<body>
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
 
-  <div class="container-wp" id="container">
-    <div class="container-ms-utenti">
-
-      <div class="utente">
-
-        <div class="img-utente">
-          <div class="container-img-profile">
-            <img src="img/DSC0683.jpg" alt="">
-          </div>
-          <p>Elena</p>
-        </div>
-
-        <div class="icons-options">
-          <i class="fas fa-circle-notch"></i>
-          <i class="fas fa-comment-alt"></i>
-          <i class="fa-solid fa-ellipsis"></i>
-        </div>
-
-      </div>
-
-      <div class="notifications">
-        <div class="notifications-icons">
-          <i class="fas fa-bell-slash"></i>
-        </div>
-
-        <div class="notifications-options">
-          <p>Ricevi notifiche di nuovi utenti</p>
-          <a href="#">Attiva notifiche desktop</a>
-        </div>
-      </div>
-
-      <div class="navigation-filter">
-        <nav>
-          <i class="fas fa-search"></i>
-          <input v-model="cerca" placeholder="Cerca ho inizia una nuova chat" type="text" value="">
-        </nav>
-      </div>
-
-      <div class="utenti">
-        <!-- ciclo profili -->
-        <ul v-for="(profili, index) in contacts">
-          <li v-bind:funzione="cercaChat (profili.name)"
-          @click="chat = index"
-          v-bind:class="(index === chat) ? 'active-background' : '' "
-          class="profile-utenti">
+  <body>
+    <div class="container-wp" id="container">
+      <div class="container-ms-utenti">
+        <div class="utente">
+          <div class="img-utente">
             <div class="container-img-profile">
-              <img :src="profili.avatar" alt="">
+              <img src="img/DSC0683.jpg" alt="" />
             </div>
+            <p>Elena</p>
+          </div>
 
-            <div class="notifications-profile">
-              <p class="name">{{ profili.name }}</p>
-              <p class="notifications-utenti color-grey">{{ profili.messages[profili.messages.length - 1].text }}</p>
-            </div>
-
-            <div class="data-ore-utenti color-grey" >
-              20:10
-            </div>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-
-    <div v-for="(profili, index) in contacts"
-    v-bind:class="(index === chat) ? 'display-active' : 'display-none' "
-    class="container-ms-utente" >
-      <div class="profile-utente">
-        <div class="container-img-profile">
-          <img :src="profili.avatar" alt="">
-        </div>
-
-        <div class="info-utente">
-          <p>{{ profili.name }}</p>
-          <p class="color-grey">Ultimo accesso 28/02/2022 12:07</p>
-        </div>
-
-        <div class="notifications-icons-utenti">
-          <i class="fas fa-circle-notch"></i>
-          <i class="fas fa-comment-alt"></i>
-          <i @click="done = !done" class="fa-solid fa-ellipsis"></i>
-
-          <div class="dropdown" :class="done == true ? 'display-block' : '' ">
-            <p @click="colse">Chiudi chat</p>
+          <div class="icons-options">
+            <i class="fas fa-circle-notch"></i>
+            <i class="fas fa-comment-alt"></i>
+            <i class="fa-solid fa-ellipsis"></i>
           </div>
         </div>
-      </div>
 
-      <div class="messaggi-utente">
+        <div class="notifications">
+          <div class="notifications-icons">
+            <i class="fas fa-bell-slash"></i>
+          </div>
 
-        <div class="container-content-utente">
+          <div class="notifications-options">
+            <p>Ricevi notifiche di nuovi utenti</p>
+            <a href="#">Attiva notifiche desktop</a>
+          </div>
+        </div>
 
-          <div v-for="(profili, index) in contacts"
-          v-bind:class="(index === chat) ? 'display-active' : 'display-none'">
+        <div class="navigation-filter">
+          <nav>
+            <i class="fas fa-search"></i>
+            <input
+              v-model="cerca"
+              placeholder="Cerca ho inizia una nuova chat"
+              type="text"
+              value=""
+            />
+          </nav>
+        </div>
 
-            <div v-for="messaggi in profili.messages"
-            :class="messaggi.status == 'sent' ? 'messaggio-utente' : 'messaggio-myUtente' "
-            class="sms">
-
-              <div class="content-utente ">
-                {{ messaggi.text }}
+        <div class="utenti">
+          <!-- ciclo profili -->
+          <ul @click="colse = true">
+            <li
+              v-for="(profili, index) in contacts"
+              v-if="profili.name.toLowerCase().includes(cerca.toLowerCase())"
+              @click="chat = index"
+              v-bind:class="(index === chat) ? 'active-background' : '' "
+              class="profile-utenti"
+            >
+              <div class="container-img-profile">
+                <img :src="profili.avatar" alt="" />
               </div>
 
-              <div class="data-messaggio-utente">{{ ora( messaggi.date ) }}</div>
-            </div>
-          </div>
+              <div class="notifications-profile">
+                <p class="name">{{ profili.name }}</p>
+                <p class="notifications-utenti color-grey">
+                  {{ profili.messages[profili.messages.length - 1].text }}
+                </p>
+              </div>
 
+              <div class="data-ore-utenti color-grey"></div>
+            </li>
+          </ul>
         </div>
-
       </div>
 
-      <div class="invia-messaggi-utente">
+      <div
+        v-for="(profili, index) in contacts"
+        v-bind:class="(index === chat) ? 'display-active' : 'display-none' "
+        v-show="colse"
+        class="container-ms-utente"
+      >
+        <div class="profile-utente">
+          <div class="container-img-profile">
+            <img :src="profili.avatar" alt="" />
+          </div>
 
-        <i class="fa-solid fa-face-smile"></i>
+          <div class="info-utente">
+            <p>{{ profili.name }}</p>
+            <p class="color-grey">Ultimo accesso 28/02/2022 12:07</p>
+          </div>
 
-        <input class="invia-messaggi"
-        type="text"
-        placeholder="Scrivi un messaggio"
-        @keyup.enter="pushMessaggio(), pushMyMessaggio()"
-        v-model="newMessaggio">
+          <div class="notifications-icons-utenti">
+            <i class="fas fa-circle-notch"></i>
+            <i class="fas fa-comment-alt"></i>
+            <i @click="done = !done" class="fa-solid fa-ellipsis"></i>
 
-        <i class="fa-solid fa-microphone"></i>
+            <div
+              class="dropdown"
+              :class="done == true ? 'display-block' : 'display-none' "
+            >
+              <p @click="colse = false">Chiudi chat</p>
+            </div>
+          </div>
+        </div>
 
+        <div class="messaggi-utente">
+          <div class="container-content-utente">
+            <div
+              v-for="(profili, index) in contacts"
+              v-bind:class="(index === chat) ? 'display-active' : 'display-none'"
+            >
+              <div
+                v-for="messaggi in profili.messages"
+                :class="messaggi.status == 'sent' ? 'messaggio-utente' : 'messaggio-myUtente' "
+                class="sms"
+              >
+                <div class="content-utente">{{ messaggi.text }}</div>
+
+                <div class="data-messaggio-utente">
+                  {{ ora( messaggi.date ) }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="invia-messaggi-utente">
+          <i class="fa-solid fa-face-smile"></i>
+
+          <input
+            class="invia-messaggi"
+            type="text"
+            placeholder="Scrivi un messaggio"
+            @keyup.enter="pushMessaggio"
+            v-model="newMessaggio"
+          />
+
+          <i class="fa-solid fa-microphone"></i>
+        </div>
       </div>
     </div>
 
-  </div>
-
-  <script src="js/script.js"></script>
-</body>
+    <script src="https://unpkg.com/dayjs"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>

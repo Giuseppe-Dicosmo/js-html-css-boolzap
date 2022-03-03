@@ -51,14 +51,15 @@
       <div class="navigation-filter">
         <nav>
           <i class="fas fa-search"></i>
-          <input placeholder="Cerca ho inizia una nuova chat" type="text" value="">
+          <input v-model="cerca" placeholder="Cerca ho inizia una nuova chat" type="text" value="">
         </nav>
       </div>
 
       <div class="utenti">
         <!-- ciclo profili -->
         <ul v-for="(profili, index) in contacts">
-          <li @click="chat = index"
+          <li v-bind:funzione="cercaChat (profili.name)"
+          @click="chat = index"
           v-bind:class="(index === chat) ? 'active-background' : '' "
           class="profile-utenti">
             <div class="container-img-profile">
@@ -95,7 +96,11 @@
         <div class="notifications-icons-utenti">
           <i class="fas fa-circle-notch"></i>
           <i class="fas fa-comment-alt"></i>
-          <i class="fa-solid fa-ellipsis"></i>
+          <i @click="done = !done" class="fa-solid fa-ellipsis"></i>
+
+          <div class="dropdown" :class="done == true ? 'display-block' : '' ">
+            <p @click="colse">Chiudi chat</p>
+          </div>
         </div>
       </div>
 

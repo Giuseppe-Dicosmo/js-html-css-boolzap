@@ -3,6 +3,8 @@ const app = new Vue({
   data: {
     chat: '',
     newMessaggio: '',
+    cerca: '',
+    done: false,
     contacts: [
       {
         name: 'Michele',
@@ -93,14 +95,14 @@ const app = new Vue({
 
     pushMessaggio: function () {
 
-      if (this.newMessaggio.length > 0) {
+      if (this.newMessaggio !== '') {
         const index = this.chat
-        console.log("🚀 ~  indexx", index)
         const groupMessages = {
           date: `${new Date().getDate()}\/${new Date().getMonth() + 1}\/${new Date().getFullYear()} ${new Date().getHours()}\:${new Date().getMinutes()}\:${new Date().getSeconds()}`,
           text: this.newMessaggio,
           status: 'sent'
         }
+
         this.contacts[index].messages.push(groupMessages)
         this.newMessaggio = '';
       }
@@ -108,7 +110,6 @@ const app = new Vue({
 
     pushMyMessaggio: function () {
       const index = this.chat;
-      console.log("🚀 ~  setTimeout", index)
       setTimeout(() => {
         const groupMessages = {
           date: `${new Date().getDate()}\/${new Date().getMonth() + 1}\/${new Date().getFullYear()} ${new Date().getHours()}\:${new Date().getMinutes()}\:${new Date().getSeconds()}`,
@@ -125,7 +126,20 @@ const app = new Vue({
     ora: function (date) {
       const ore = date.split(' ')[1];
       return ore.substring(0,5);
+    },
+
+
+    cercaChat: function ( nome ) {
+
+      this.cerca
+
+
+    },
+
+    colse: function () {
+
     }
+
   },
 
 })
